@@ -56,6 +56,14 @@ remote_receiver:
     pin:
       number: GPIO4
       inverted: true
+    dump: pronto
+    on_pronto:
+      then:
+        - homeassistant.event:
+            event: esphome.remote_received
+            data:
+              protocol: "PRONTO"
+              code: !lambda 'return x.data;'
 
 infrared:
   # IR transmitter instance
